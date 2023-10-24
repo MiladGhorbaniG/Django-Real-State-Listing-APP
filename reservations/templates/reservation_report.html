@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Reservation Report</title>
+</head>
+<body>
+    {% for listing in listings %}
+        <h1>Reservation Report for {{ listing.name }}</h1>
+        {% if listing.reservations %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Guest Name</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reservation in listing.reservations %}
+                        <tr>
+                            <td>{{ reservation.name }}</td>
+                            <td>{{ reservation.start_time.date }}</td>
+                            <td>{{ reservation.end_time.date }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>There are no reservations for this listing.</p>
+        {% endif %}
+    {% endfor %}
+</body>
+</html>
